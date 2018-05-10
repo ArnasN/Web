@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const https = require('https');
+var weater = require('./weater')
 const PORT = process.env.PORT || 5000
 
 
@@ -17,7 +18,7 @@ express()
   .get('/weater', function (req, res) {
 
     var weaterData;
-
+    
 
     https.get('https://www.metaweather.com/api/location/44418/', (resp) => {
       let data = '';
@@ -27,14 +28,11 @@ express()
         data += chunk;
       });
 
-      // The whole response has been received. Print out the result.
       resp.on('end', () => {
-
-        weaterData = JSON.parse(data);
-        console.log(weaterData);
+      weaterData = weater.weatherParser(data);      
+       console.log(weaterData);
         res.render('pages/weater', { weater: weaterData });
       });
-
 
     }).on("error", (err) => {
       console.log("Error: " + err.message);
