@@ -22,5 +22,25 @@ db.run('INSERT INTO UserData (WOED,title,min_temp,max_temp,WS)  VALUES  ('
     console.log(err);
 });
 db.close();
+    },
+
+    getUsersData: function(callback){
+        var sqlite3 = require("sqlite3").verbose();
+        var db = new sqlite3.Database('test');
+        var data = []; 
+        db.serialize(function() {
+            db.each("SELECT * FROM UserData" , function(err, row) {
+                data.push(row); 
+            }, function(){ 
+                db.close(); 
+                callback(data); 
+            });
+        });
+
     }
+
 }
+
+
+
+

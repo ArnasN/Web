@@ -21,12 +21,11 @@ express()
   })
   
 
-
-
   .post('/weater',urlencodedParser, function (req, res){
   
     var WOED = req.body.WOED;
     var weaterData;
+    var userDataWeater;
     https.get('https://www.metaweather.com/api/location/'+WOED+'/', (resp) => {
       let data = '';
      
@@ -35,8 +34,17 @@ express()
         data += chunk;
       });
       resp.on('end', () => {
-      weaterData = weater.weatherParser(data);   
-        res.render('pages/weater', { weater: weaterData, lacationID : 'locating' });
+      weaterData = weater.weatherParser(data);
+
+        DB.getUsersData(function(data){
+          userDataWeater =  JSON.stringify(data);
+         
+        res.render('pages/weater', { weater: weaterData, lacationID : 'locating', userData:userDataWeater });
+     //   console.log(data);
+     });
+
+
+       
       });
 
     }).on("error", (err) => {
