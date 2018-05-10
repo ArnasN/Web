@@ -12,7 +12,14 @@
 
     <h1>Weater page</h1>
     <p>
-      <%= weater.title %>
+        <% if (weater) { %>
+          <%= weater.title %>
+       <% } %>
+
+
+    
+
+    
     </p>
 
 
@@ -21,16 +28,14 @@
         <tr>
           <th>Weather Parameter</th>
           <th>Value</th>
-               
+          <% if (weater) { %>
           <% for (var prop in weater ) { %>
-            <%-  weater[prop] %>
-            <%-  prop %>
+            <tr><td>
+            <%-  prop %> </td><td>
+            <%-  weater[prop] %> </td></tr>
+      
           <% } %>
-
-          <script>
-             myVar = JSON.parse('<%- JSON.stringify(weater) %>');
-          console.log(myVar)
-          </script>
+          <% } %>
 
       </thead>
       <tbody>

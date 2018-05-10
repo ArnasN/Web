@@ -1,7 +1,15 @@
 module.exports = {
     weatherParser: function (weatherData) {
          myVar = JSON.parse(weatherData);
- 
+
+        console.log(myVar);
+
+        if(myVar.detail =='Not found.') {
+          return null;
+        }
+        
+
+
             var state = [];
             var min_temp = 0.0;
             var max_temp = 0.0;
@@ -29,7 +37,7 @@ module.exports = {
               decodedWeather[element.value] = (element.count/sourcesCount)*100+'%' ;
             });
        
-            console.log(decodedWeather);
+         
        return decodedWeather;             
     }
   }
