@@ -32,7 +32,6 @@ express()
 
       resp.on('end', () => {
       weaterData = weater.weatherParser(data);   
-      console.log(WOED);   
         res.render('pages/weater', { weater: weaterData, lacationID : 'locating' });
       });
 

@@ -6,46 +6,79 @@
 </head>
 
 <body>
-
   <% include ../partials/nav.ejs %>
 
-
+  <div class="container">
     <h1>Weater page</h1>
     <p>
-        <% if (weater) { %>
-          <%= weater.title %>
-       <% } %>
-
-
-    
-
-    
+      <% if (weater) { %>
+        <%= weater.title %>
+          <% }else{ %>
+            <p>City was not found</p>
+            <% } %>
     </p>
-
 
     <table class="countriesTable">
       <thead>
         <tr>
-          <th>Weather Parameter</th>
-          <th>Value</th>
+          <th>Weather Parameter </th>
+          <th> Value</th>
           <% if (weater) { %>
-          <% for (var prop in weater ) { %>
-            <tr><td>
-            <%-  prop %> </td><td>
-            <%-  weater[prop] %> </td></tr>
-      
-          <% } %>
-          <% } %>
-
+            <% for (var prop in weater ) { %>
+              <tr>
+                <td>
+                  <%-  prop %>
+                </td>
+                <td>
+                  <%-  weater[prop] %>
+                </td>
+              </tr>
+              <% } %>
+                <% } else{ %>
+                  <tr>
+                    <td>No data</td>
+                  </tr>
+                  <% } %>
       </thead>
       <tbody>
-
       </tbody>
     </table>
+  </div>
+
+    <div class="container">
+        <a href="/" class="lang-logo">
+          <img src="/lang-logo.png">
+        </a>
+        <h1>Add your observations </h1>
+        <form id="user-form" method="POST" action="/userData">
+          <label for="WOED">WOED number</label>
+          <input style=" color: black;"  type="number" name="WOED"> <br>
+          <label for="title">Location name</label>
+          <input style=" color: black;"  type="text" name="title"> <br>
+          <label for="min_temp">Lowest temperature today </label>
+          <input style=" color: black;"  type="number" name="min_temp"> <br>
+          <label for="max_temp">Highiest temperature today</label>
+          <input style=" color: black;"  type="number" name="max_temp"> <br>
+          <label for="WS">Wheater condition</label>
+          <select name="WS">
+              <option value="Snow">Snow</option>
+              <option value="Sleet">Sleet</option>
+              <option value="Hail">Hail</option>
+              <option value="Thunderstorm">Thunderstorm</option>
+              <option value="Heavy Rain">Heavy Rain</option>
+              <option value="Light Rain">Light Rain</option>
+              <option value="Showers">Showers</option>
+              <option value="Heavy Cloud">Heavy Cloud</option>
+              <option value="Light Cloud">Light Cloud</option>
+              <option value="Clear">Clear</option>
+            </select>       
+         <hr> <input style=" color: black;" type="submit" value="submit">
+          </form>
+       </div>
+
 
 
 
 
 </body>
-
-</html>  
+</html>

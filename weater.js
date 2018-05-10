@@ -2,7 +2,7 @@ module.exports = {
     weatherParser: function (weatherData) {
          myVar = JSON.parse(weatherData);
 
-        console.log(myVar);
+      //  console.log(myVar);
 
         if(myVar.detail =='Not found.') {
           return null;
@@ -34,7 +34,7 @@ module.exports = {
             
             state = compressArray(state); 
             state.forEach(element => {
-              decodedWeather[element.value] = (element.count/sourcesCount)*100+'%' ;
+              decodedWeather[element.value] = ((element.count/sourcesCount)*100).toFixed(2)+'%' ;
             });
        
          

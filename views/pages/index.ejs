@@ -14,19 +14,15 @@
       <img src="/lang-logo.png">
     </a>
     <h1>Is it hot or cold this weater site will tell</h1>
-    <p>This is a sample Node application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
-    <a type="button" class="btn btn-lg btn-default" href="./weater"><span class="glyphicon glyphicon-flash"></span> Getting Started with Node</a>
+    <form id="WOEID-form" method="POST" action="/weater">
+      <label for="WOED">Enter WOED for wheter prognosis</label>
+      <input style=" color: black;"  type="text" name="WOED">
+      <input style=" color: blue;" type="submit" value="submit">
+      </form>
    </div>
 </div>
 <div class="container">
-<form id="WOEID-form" method="POST" action="/weater">
-<label for="WOED">Enter WOED for wheter prognosis</label>
-<input type="text" name="WOED">
-<input type="submit" value="submit">
-</form>
-  <hr>
   <div class="row">
-
     <div class="col-md-6">
       <h3><span class="glyphicon glyphicon-link"></span> Try for yourself</h3>
       <ul>
@@ -34,12 +30,9 @@
         <li>San Jose 2488042</li>
         <li>Santiago 349859</li>
         <li>Warsaw 523920</li>
-        <li>Berlin 638242</li>
-       
-  </div> <!-- row -->
-   <div class="alert alert-info text-center" role="alert">
-    Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
+        <li>Berlin 638242</li>       
   </div>
+</div>
 </div>
 
 
