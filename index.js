@@ -3,6 +3,7 @@ const path = require('path')
 const https = require('https');
 var bodyParser = require('body-parser')
 var weater = require('./weater')
+var DB = require('./DB')
 const PORT = process.env.PORT || 5000
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -14,6 +15,7 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .post('/userData', urlencodedParser, function (req, res){
      var userData = req.body; 
+     DB.UserDataInser(userData);
     console.log(userData);
     res.render('pages/db.ejs',{data: userData});
   })
