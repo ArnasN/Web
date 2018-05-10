@@ -12,16 +12,19 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-
+  .post('/userData', urlencodedParser, function (req, res){
+     var userData = req.body; 
+    console.log(userData);
+    res.render('pages/db.ejs',{data: userData});
+  })
   
+
+
+
   .post('/weater',urlencodedParser, function (req, res){
   
-
     var WOED = req.body.WOED;
-
     var weaterData;
-    
-
     https.get('https://www.metaweather.com/api/location/'+WOED+'/', (resp) => {
       let data = '';
      
@@ -29,7 +32,6 @@ express()
       resp.on('data', (chunk) => {
         data += chunk;
       });
-
       resp.on('end', () => {
       weaterData = weater.weatherParser(data);   
         res.render('pages/weater', { weater: weaterData, lacationID : 'locating' });
